@@ -5,9 +5,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
 
 <html>
   <head>
-    <!-- Load CSS with current GMT time -->
-    <link href="http://tezla.ru/rassadin/wall-clock-demo/" rel="stylesheet" type="text/css" />
-
     <style>
       #clock {
       }
@@ -160,12 +157,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
         left:0.4em;
         position:absolute;
       }
-      .hh {
-        transform:rotate(-55deg);
-      }
-      .mm {
-        transform:rotate(60deg);
-      }
 
       .m {
         height:4.8em;
@@ -221,12 +212,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
       #clock b>b {
         -ms-transform:rotate(30deg);
         -webkit-transform:rotate(30deg);
-      }
-      #clock .hh {
-        -webkit-transform:rotate(-55deg);
-      }
-      #clock .mm {
-        -webkit-transform:rotate(60deg);
       }
 
       /* Fixes */
@@ -359,6 +344,27 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
         </div>
       </div>
     </div>
+    <script language="javascript">
+      function setTransform(className, degrees) {
+        var rotate = "rotate(" + degrees + "deg)";
+
+        var elems = document.getElementsByClassName(className);
+        for(var i = 0; i < elems.length; i++) {
+          var elem = elems[i];
+          elem.style.transform = rotate;
+          elem.style.msTransform = rotate;
+          elem.style.webkitTransform = rotate;
+        }
+      }
+
+      var minute = Math.floor(60 * Math.random());
+      var minuteDegrees  = 360 * minute / 60;
+      setTransform('mm', minuteDegrees);
+
+      var hour = Math.floor(12 * Math.random());
+      var hourDegrees = 360 * (hour + (minute / 60)) / 12;
+      setTransform('hh', hourDegrees);
+    </script>
   </body>
 </html>
 
