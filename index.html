@@ -9,11 +9,11 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
       #answer {
         display: inline-block;
         width:3em;
-        background-color:black;
         text-align:center;
       }
-      #answer:hover {
-        background-color:white;
+      #answer.hidden {
+        background-color:#000;
+        cursor:help;
       }
       #license {
         font-size:x-small;
@@ -398,8 +398,13 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
       }
 
       var answerElem = document.getElementById('answer');
+      answerElem.onclick = function() {
+        answerElem.className = '';
+      }
 
       function setNewTime() {
+        answerElem.className = 'hidden';
+
         var minute = Math.floor(60 / step * Math.random()) * step;
         var minuteDegrees  = 360 * minute / 60;
         setTransform('mm', minuteDegrees);
