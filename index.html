@@ -6,6 +6,15 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
   <head>
     <title>Learn Analog Time</title>
     <style>
+      #answer {
+        display: inline-block;
+        width:3em;
+        background-color:black;
+        text-align:center;
+      }
+      #answer:hover {
+        background-color:white;
+      }
       #license {
         font-size:x-small;
         position:absolute;
@@ -305,6 +314,20 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
     </style>
   </head>
   <body>
+    <div>
+      What times would you like to generate?<br/>
+      <form name="options">
+        <input type="radio" name="times" onclick="changeTimes(60)">Hours</input><br/>
+        <input type="radio" name="times" onclick="changeTimes(30)">Half hours</input><br/>
+        <input type="radio" name="times" onclick="changeTimes(15)">Quarter hours</input><br/>
+        <input type="radio" name="times" onclick="changeTimes( 5)">Five minutes</input><br/>
+        <input type="radio" name="times" onclick="changeTimes( 1)" checked="checked">Minutes</input><br/>
+        <button onclick="setNewTime(); return false">Refresh</button>
+      </form>
+    </div>
+    <div>
+      The time is <span id="answer"></span>
+    </div>
     <div id="clock">
       <div id="a">
         <div id="b">
@@ -334,7 +357,7 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
                 <div id="g">
                   <u><u>11<u>10<u>9</u>8</u>7</u>6</u>
                 </div>
-                <div id="q"><a href="" style="position:relative;z-index:1000;color:#222;text-decoration:none;">quartz</a></div>
+                <div id="q"><a href="" style="position:relative;z-index:1000;color:#222;text-decoration:none;" onclick="setNewTime(); return false">quartz</a></div>
               </div>
               <div class="hh">
                 <div class="h"></div>
@@ -356,6 +379,12 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
       licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a> by <a href="mailto:thecabinet@gmail.com">Jonathan Stafford</a>.
     </div>
     <script language="javascript">
+      var step = 1;
+      function changeTimes(newStep) {
+        step = newStep
+        setNewTime();
+      }
+
       function setTransform(className, degrees) {
         var rotate = "rotate(" + degrees + "deg)";
 
@@ -368,13 +397,27 @@ This work, "Learn Analog Time", is a derivative of <a href="http://cssdeck.com/l
         }
       }
 
-      var minute = Math.floor(60 * Math.random());
-      var minuteDegrees  = 360 * minute / 60;
-      setTransform('mm', minuteDegrees);
+      var answerElem = document.getElementById('answer');
 
-      var hour = Math.floor(12 * Math.random());
-      var hourDegrees = 360 * (hour + (minute / 60)) / 12;
-      setTransform('hh', hourDegrees);
+      function setNewTime() {
+        var minute = Math.floor(60 / step * Math.random()) * step;
+        var minuteDegrees  = 360 * minute / 60;
+        setTransform('mm', minuteDegrees);
+
+        var hour = Math.ceil(12 * Math.random());
+        var hourDegrees = 360 * (hour + (minute / 60)) / 12;
+        setTransform('hh', hourDegrees);
+
+        var answer = hour + ':';
+        if(minute < 10) {
+          answer += '0' + minute;
+        } else {
+          answer += minute;
+        }
+        answerElem.innerText = answer;
+      }
+
+      setNewTime();
     </script>
   </body>
 </html>
