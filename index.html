@@ -166,11 +166,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
       .mm {
         transform:rotate(60deg);
       }
-      @keyframes tick {
-        0% { transform: rotate(0deg); }
-        12% { transform:rotate(6deg); }
-        100% { transform: rotate(6deg); }
-      }
 
       .m {
         height:4.8em;
@@ -179,12 +174,7 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
         position:relative;
         background:#222;
         border:0 0 3.2em 0;
-        animation: a36016 3600s normal infinite linear;
         outline: 1px solid transparent;
-      }
-      @keyframes a36016 {
-        0% { transform: translate(0, 1.6em) rotate(0deg) translate(0,-1.6em); }
-        100% { transform: translate(0, 1.6em) rotate(360deg) translate(0,-1.6em); }
       }
 
       .mr {
@@ -202,7 +192,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
         background:#222;
         margin-top:1.3em;
         outline: 1px solid transparent;
-        animation: a36010 43200s normal infinite linear;
       }
       #sh {
         width:8.0em;
@@ -224,11 +213,6 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
         box-shadow:inset 0.45em 0.9em 0.05em rgba(250,252,253,0.2);
       }
       /* Vendor CSS prefixes */
-      #clock {
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-      }
       #clock b>i,
       #clock i>i {
         -ms-transform:rotate(6deg);
@@ -244,33 +228,8 @@ by Nikolai Rassadin <rassadin@gmail.com>, used under CC BY-NC-SA 3.0.
       #clock .mm {
         -webkit-transform:rotate(60deg);
       }
-      @-webkit-keyframes tick {
-        0% { -webkit-transform: rotate(0deg); }
-        12% { -webkit-transform:rotate(6deg); }
-        100% { -webkit-transform: rotate(6deg); }
-      }
-      #clock .m {
-        -webkit-animation: a36016 3600s normal infinite linear;
-      }
-      @-webkit-keyframes a36016 {
-        0% { -webkit-transform: translate(0, 1.6em) rotate(0deg) translate(0,-1.6em); }
-        50% { -webkit-transform: translate(0, 1.6em) rotate(180deg) translate(0,-1.6em); }
-        100% { -webkit-transform: translate(0, 1.6em) rotate(360deg) translate(0,-1.6em); }
-      }
-      #clock .h,
-      #css3fixed:checked ~ #clock .hh {
-        -webkit-animation: a36010 43200s normal infinite linear;
-      }
 
       /* Fixes */
-
-      #clock {
-        transition:none;
-        -webkit-transition: none;
-        -moz-transition: none;
-        -o-transition: none;
-      }
-
 
       #clock b:nth-child(2) {
         transform:rotate(30deg);
